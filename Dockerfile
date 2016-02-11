@@ -8,7 +8,8 @@ RUN apt-get update && \
     docker-php-ext-install -j$(nproc) mcrypt && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    usermod -u 1000 www-data
 
 ADD php.ini /usr/local/etc/php/php.ini
 
