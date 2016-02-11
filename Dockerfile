@@ -3,7 +3,9 @@ FROM php:7-fpm
 RUN apt-get update && \
     docker-php-ext-install -j$(nproc) pdo_mysql && \
     docker-php-ext-install -j$(nproc) mbstring && \
-    docker-php-ext-install -j$(nproc) tokenizer
+    docker-php-ext-install -j$(nproc) tokenizer && \
+    apt-get install -y libmcrypt-dev && \
+    docker-php-ext-install -j$(nproc) mcrypt
 
 ADD php.ini /usr/local/etc/php/php.ini
 
